@@ -1,0 +1,29 @@
+<div>
+  <% if(locals.type==='sign-in') {%>
+  <p>Sign in</p>
+  <p>Don't have an account yet? <a href="/sign-up">Sign Up</a></p>
+  <% } else{%>
+  <p>Sign up</p>
+  <p>Already have an account? <a href="/sign-in">Sign In</a></p>
+  <% } %>
+  <form method="post">
+    <div class="username">
+      <label for="">Username</label>
+      <input type="text" id="username" />
+    </div>
+    <div class="password">
+      <label for="password">Password</label>
+      <input type="password" id="password" />
+    </div>
+    <% if(locals.type==='sign-up'){ %>
+    <div class="confirmPassowrd">
+      <label for="confirmPassowrd">Confirm Passowrd</label>
+      <input type="password" id="confirmPassowrd" />
+    </div>
+    <% } %> <% if(locals.type==='sign-up'){ %>
+    <button type="submit">Sign Up</button>
+    <% }else if(locals.type==='sign-in'){ %>
+    <button type="submit">Sign In</button>
+    <% } %>
+  </form>
+</div>
