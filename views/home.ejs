@@ -8,10 +8,8 @@
   <body>
     <%-include('partials/header') %>
     <main>
-      <div>
-        <p>Sign in</p>
-        <form action="/post"></form>
-      </div>
+      <% switch(locals.page){ case "sign-in": %> <%case "sign-up": %> <%-
+      include('partials/sign-in')%> <% break; }%>
     </main>
   </body>
 </html>
