@@ -12,7 +12,7 @@
         "<node_internals>/**",
         "${workspaceFolder}/node_modules/**"
       ],
-      "program": "${workspaceFolder}/controllers/loginController.js"
+      "program": "${workspaceFolder}/app.js"
     }
   ]
 }
