@@ -5,6 +5,12 @@
   <% } else{%>
   <p>Sign up</p>
   <p>Already have an account? <a href="/sign-in">Sign In</a></p>
+  <% } %> <% if(locals.errors){ %>
+  <ul>
+    <% errors.map((err)=>{ %>
+    <li><%=err.msg %></li>
+    <% }) %>
+  </ul>
   <% } %>
   <form method="post">
     <div class="username">

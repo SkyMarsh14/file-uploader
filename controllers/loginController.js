@@ -8,6 +8,17 @@ const lengthErr = (field, length) => {
     length.max
   } letters.`;
 };
+const validateUsername = [
+  body("username")
+    .trim()
+    .custom(async (username) => {
+      const user = await query.user.findByUsername(username);
+      if (user) {
+        throw new Error("Username already in use.");
+      }
+      return true;
+    }),
+];
 const validateUser = [
   body("username")
     .trim()
@@ -47,8 +58,17 @@ const loginController = {
   sign_in_post: [
     validateUser,
     async (req, res) => {
-      const error = validationResult(req);
-      res.redirect("/sign-in");
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).render("home", {
+          page: "login",
+          type: "sign-in",
+          usernameLength,
+          passwordLength,
+          errors: errors.array(),
+        });
+      }
+      res.send("Login Success.");
     },
   ],
   sign_up_get: async (req, res) => {
@@ -61,12 +81,22 @@ const loginController = {
   },
   sign_up_post: [
     validateUser,
+    validateUsername,
     validateConfirmationPassword,
     async (req, res) => {
-      const error = validationResult(req);
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).render("home", {
+          page: "login",
+          type: "sign-up",
+          usernameLength,
+          passwordLength,
+          errors: errors.array(),
+        });
+      }
       const { username, password } = req.body;
       await query.user.register(username, password);
-      res.redirect("/sign-up");
+      res.redirect("/sign-in");
     },
   ],
 };

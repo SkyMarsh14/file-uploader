@@ -19,6 +19,13 @@ const query = {
         throw new Error(err);
       }
     },
+    findByUsername: async (username) => {
+      return await prisma.user.findFirst({
+        where: {
+          username: username,
+        },
+      });
+    },
   },
 };
 
