@@ -1,12 +1,13 @@
-require("dotenv").config();
-const express = require("express");
+import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
 const app = express();
-const path = require("node:path");
-const loginRouter = require("./routes/loginRouter");
+import path from "node:path";
+import loginRouter from "./routes/loginRouter.js";
 
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(import.meta.dirname, "views"));
 app.set("view engine", "ejs");
-
+app.use(express.urlencoded({ extended: true }));
 app.use("/", loginRouter);
 
 const PORT = process.env.PORT || 3000;
