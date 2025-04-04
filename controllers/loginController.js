@@ -1,5 +1,6 @@
 import { body, validationResult } from "express-validator";
 import capWord from "./../lib/string.js";
+import query from "./../db/query.js";
 const usernameLength = { min: 3, max: 20 };
 const passwordLength = { min: 3, max: 40 };
 const lengthErr = (field, length) => {
@@ -28,10 +29,10 @@ const validateConfirmationPassword = [
     .notEmpty()
     .withMessage("Password confirmation is required.")
     .custom((value, { req }) => {
-      if (value === req.body.password) true;
-      else {
+      if (!value === req.body.password) {
         throw new Error("Passwords do not match.");
       }
+      return true;
     }),
 ];
 const loginController = {
@@ -62,7 +63,9 @@ const loginController = {
     validateUser,
     validateConfirmationPassword,
     async (req, res) => {
-      validationResult(req);
+      const error = validationResult(req);
+      const { username, password } = req.body;
+      await query.user.register(username, password);
       res.redirect("/sign-up");
     },
   ],

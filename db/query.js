@@ -2,9 +2,24 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const query = {
-  getUsers: async () => {
-    return await prisma.user.findMany();
+  user: {
+    getAll: async () => {
+      return await prisma.user.findMany();
+    },
+    register: async (username, password) => {
+      try {
+        await prisma.user.create({
+          data: {
+            password: password,
+            username: username,
+          },
+        });
+      } catch (err) {
+        console.log(err);
+        throw new Error(err);
+      }
+    },
   },
 };
 
-module.exports = query;
+export default query;

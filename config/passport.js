@@ -1,1 +1,1 @@
-const passport = require("passport");
+import passport from "passport";
