@@ -12,7 +12,8 @@
         "<node_internals>/**",
         "${workspaceFolder}/node_modules/**"
       ],
-      "program": "${workspaceFolder}/app.js"
+      "program": "${workspaceFolder}/app.js",
+      "runtimeArgs": ["--watch"]
     }
   ]
 }
