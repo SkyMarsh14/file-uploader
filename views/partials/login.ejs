@@ -2,7 +2,13 @@
   <% if(locals.type==='sign-in') {%>
   <p>Sign in</p>
   <p>Don't have an account yet? <a href="/sign-up">Sign Up</a></p>
-  <% } else{%>
+  <% if(locals.messages){ %> <% if(messages.length>0){ %>
+  <ul>
+    <% for(let i=0; i<=messages.length;i++){ %>
+    <li><%=messages.pop() %></li>
+    <% } %>
+  </ul>
+  <% } %> <% } %> <% } else{%>
   <p>Sign up</p>
   <p>Already have an account? <a href="/sign-in">Sign In</a></p>
   <% } %> <% if(locals.errors){ %>

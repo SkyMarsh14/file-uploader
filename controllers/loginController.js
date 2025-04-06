@@ -54,13 +54,11 @@ const loginController = {
       type: "sign-in",
       usernameLength,
       passwordLength,
+      messages: req.session.messages,
     });
   },
   sign_in_post: [
     validateUser,
-    async (req, res, next) => {
-      next();
-    },
     passport.authenticate("local", {
       successRedirect: "/",
       failureRedirect: "/sign-in",
