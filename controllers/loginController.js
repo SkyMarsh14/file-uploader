@@ -58,9 +58,13 @@ const loginController = {
   },
   sign_in_post: [
     validateUser,
+    async (req, res, next) => {
+      next();
+    },
     passport.authenticate("local", {
       successRedirect: "/",
-      failureRedirect: "/",
+      failureRedirect: "/sign-in",
+      failureMessage: true,
     }),
   ],
   sign_up_get: async (req, res) => {

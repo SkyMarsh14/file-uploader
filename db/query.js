@@ -1,4 +1,5 @@
 import { PrismaClient } from "./../generated/client/default.js";
+import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 const query = {
   user: {
@@ -6,10 +7,11 @@ const query = {
       return await prisma.user.findMany();
     },
     register: async (username, password) => {
+      const hashedPassword = await bcrypt.hash(password, 10);
       try {
         await prisma.user.create({
           data: {
-            password: password,
+            password: hashedPassword,
             username: username,
           },
         });
@@ -31,6 +33,9 @@ const query = {
           id: id,
         },
       });
+    },
+    deleteAll: async () => {
+      return await prisma.user.deleteMany();
     },
   },
 };
