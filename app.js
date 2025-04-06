@@ -1,11 +1,12 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
-const app = express();
+import "./config/passport.js";
 import path from "node:path";
 import loginRouter from "./routes/loginRouter.js";
 import session from "express-session";
 import passport from "passport";
+const app = express();
 
 app.set("views", path.join(import.meta.dirname, "views"));
 app.set("view engine", "ejs");

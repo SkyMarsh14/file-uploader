@@ -1,6 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "./../generated/client/default.js";
 const prisma = new PrismaClient();
-
 const query = {
   user: {
     getAll: async () => {
@@ -23,6 +22,13 @@ const query = {
       return await prisma.user.findFirst({
         where: {
           username: username,
+        },
+      });
+    },
+    findById: async (id) => {
+      return await prisma.user.findUnique({
+        where: {
+          id: id,
         },
       });
     },

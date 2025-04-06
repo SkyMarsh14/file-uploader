@@ -1,7 +1,7 @@
 import { body, validationResult } from "express-validator";
 import capWord from "./../lib/string.js";
 import query from "./../db/query.js";
-import authenticateUser from "../lib/validate.js";
+import passport from "passport";
 const usernameLength = { min: 3, max: 20 };
 const passwordLength = { min: 3, max: 40 };
 const lengthErr = (field, length) => {
@@ -9,13 +9,6 @@ const lengthErr = (field, length) => {
     length.max
   } letters.`;
 };
-const authUser = [
-  body("username")
-    .trim()
-    .custom((username, { req }) => {
-      return authenticateUser(username, req.body.password);
-    }),
-];
 const validateUsername = [
   body("username")
     .trim()
@@ -65,20 +58,10 @@ const loginController = {
   },
   sign_in_post: [
     validateUser,
-    authUser,
-    async (req, res) => {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).render("home", {
-          page: "login",
-          type: "sign-in",
-          usernameLength,
-          passwordLength,
-          errors: errors.array(),
-        });
-      }
-      res.send("Login Success.");
-    },
+    passport.authenticate("local", {
+      successRedirect: "/",
+      failureRedirect: "/",
+    }),
   ],
   sign_up_get: async (req, res) => {
     res.render("home", {
