@@ -5,6 +5,7 @@ import "./config/passport.js";
 import path from "node:path";
 import loginRouter from "./routes/loginRouter.js";
 import indexRouter from "./routes/indexRouter.js";
+import uploadRouter from "./routes/uploadRouter.js";
 import session from "express-session";
 import passport from "passport";
 import connection from "connect-pg-simple";
@@ -34,6 +35,7 @@ app.use(passport.session());
 
 app.use("/", loginRouter);
 app.use("/", indexRouter);
+app.use("/upload", uploadRouter);
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
