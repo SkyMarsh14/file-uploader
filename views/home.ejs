@@ -9,7 +9,8 @@
     <%-include('partials/header') %>
     <main>
       <% switch(locals.page){ case "login": %> <%-include('partials/login') %>
-      <% break; }%>
+      <% break; %> <% case "main": %> <%-include('partials/uploader') %> <%
+      break;} %>
     </main>
   </body>
 </html>
