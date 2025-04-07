@@ -1,6 +1,7 @@
 const uploadController = {
-  post: async (req, res) => {
-    res.send("Complete");
+  post_file: async (req, res) => {
+    res.send("Successfully uploaded.");
   },
+  post_folder: async (req, res) => {},
 };
 export default uploadController;

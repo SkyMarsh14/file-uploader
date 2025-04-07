@@ -1,5 +1,19 @@
-<form action="/upload" method="post" enctype="multipart/form-data">
-  <label for="file"> Upload a file </label>
-  <input type="file" name="userFile" />
-  <button type="submit">Upload</button>
-</form>
+<script src="/js/uploader.js" defer></script>
+<dialog id="file-dialog" class="upload-form-dialog">
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <label for="file"> Upload a file </label>
+    <input type="file" name="userFile" />
+    <button type="submit">Upload</button>
+    <button type="button" class="close-modal">X</button>
+  </form>
+</dialog>
+<dialog id="folder-dialog" class="upload-form-dialog">
+  <form action="/upload/folder" method="post">
+    <label for="folder">New Folder</label>
+    <input type="text" placeholder="Folder Name" id="folder" name="folder" />
+    <button type="submit">New Folder</button>
+    <button type="button" class="close-modal">X</button>
+  </form>
+</dialog>
+<button type="button" class="newFileBtn">New File</button>
+<button type="button" class="newFolderBtn">New Folder</button>

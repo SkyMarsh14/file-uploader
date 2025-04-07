@@ -16,6 +16,8 @@ const app = express();
 
 app.set("views", path.join(import.meta.dirname, "views"));
 app.set("view engine", "ejs");
+const assetPath = path.join(import.meta.dirname, "public");
+app.use(express.static(assetPath));
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
