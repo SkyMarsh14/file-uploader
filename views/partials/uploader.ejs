@@ -14,12 +14,25 @@
       type="text"
       placeholder="Folder Name"
       id="folder"
-      name="folder"
+      name="folderName"
       required
     />
     <button type="submit">New Folder</button>
     <button type="button" class="close-modal">X</button>
   </form>
 </dialog>
+<% if(locals.errors){ %>
+<ul class="errors">
+  <% errors.map((err)=>{ %>
+  <li><%=err %></li>
+  <% }) %>
+</ul>
+<% } %> <% if(locals.folders){ %>
+<ul>
+  <% folders.map((folder)=>{ %>
+  <li><%=folder.folderName %></li>
+  <% }) %>
+</ul>
+<% } %>
 <button type="button" class="newFileBtn">New File</button>
 <button type="button" class="newFolderBtn">New Folder</button>

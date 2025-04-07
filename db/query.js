@@ -42,6 +42,13 @@ const query = {
     getAll: async () => {
       return await prisma.folder.findMany();
     },
+    getRootFolders: async () => {
+      return await prisma.folder.findMany({
+        where: {
+          parentFolderId: null,
+        },
+      });
+    },
     create: async (folderName, parentFolderId) => {
       return await prisma.folder.create({
         data: {

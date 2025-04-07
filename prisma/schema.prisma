@@ -25,15 +25,17 @@ model session {
 }
 
 model Folder {
-  id             String @id @default(uuid())
-  folderName     String @unique
+  id             String  @id @default(uuid())
+  folderName     String
+  parentFolderId String?
   files          File[]
-  parentFolderId String
+
+  @@unique([folderName, parentFolderId])
 }
 
 model File {
   id       String @id @default(uuid())
   fileName String @unique
-  folder   Folder @relation(fields: [folderId], references: [id])
   folderId String
+  folder   Folder @relation(fields: [folderId], references: [id])
 }
