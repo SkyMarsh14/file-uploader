@@ -10,7 +10,13 @@
 <dialog id="folder-dialog" class="upload-form-dialog">
   <form action="/upload/folder" method="post">
     <label for="folder">New Folder</label>
-    <input type="text" placeholder="Folder Name" id="folder" name="folder" />
+    <input
+      type="text"
+      placeholder="Folder Name"
+      id="folder"
+      name="folder"
+      required
+    />
     <button type="submit">New Folder</button>
     <button type="button" class="close-modal">X</button>
   </form>

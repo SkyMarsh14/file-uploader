@@ -1,3 +1,4 @@
+import { body, validationResult } from "express-validator";
 const uploadController = {
   post_file: async (req, res) => {
     res.send("Successfully uploaded.");

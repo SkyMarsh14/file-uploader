@@ -15,3 +15,25 @@ model User {
 
   @@unique([username, password])
 }
+
+model session {
+  sid    String   @id @db.VarChar
+  sess   Json     @db.Json
+  expire DateTime @db.Timestamp(6)
+
+  @@index([expire], map: "IDX_session_expire")
+}
+
+model Folder {
+  id             String @id @default(uuid())
+  folderName     String @unique
+  files          File[]
+  parentFolderId String
+}
+
+model File {
+  id       String @id @default(uuid())
+  fileName String @unique
+  folder   Folder @relation(fields: [folderId], references: [id])
+  folderId String
+}

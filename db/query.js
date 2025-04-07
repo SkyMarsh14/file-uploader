@@ -38,6 +38,19 @@ const query = {
       return await prisma.user.deleteMany();
     },
   },
+  folder: {
+    getAll: async () => {
+      return await prisma.folder.findMany();
+    },
+    create: async (folderName, parentFolderId) => {
+      return await prisma.folder.create({
+        data: {
+          folderName: folderName,
+          parentFolderId: parentFolderId,
+        },
+      });
+    },
+  },
 };
 
 export default query;

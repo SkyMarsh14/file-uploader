@@ -10,7 +10,7 @@ import session from "express-session";
 import passport from "passport";
 import connection from "connect-pg-simple";
 import pool from "./db/pool.js";
-
+import isAuth from "./lib/isAuth.js";
 const pgSession = connection(session);
 const app = express();
 
@@ -37,7 +37,7 @@ app.use(passport.session());
 
 app.use("/", loginRouter);
 app.use("/", indexRouter);
-app.use("/upload", uploadRouter);
+app.use("/upload", isAuth, uploadRouter);
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
