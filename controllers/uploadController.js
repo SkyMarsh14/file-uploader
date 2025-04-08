@@ -6,6 +6,7 @@ const validateFolderName = [
 const uploadController = {
   get_main: async (req, res) => {
     const folders = await query.folder.getRootFolders();
+    const files = await query.file.getFiles(null);
     res.render("home", {
       page: "upload",
       user: req.user,

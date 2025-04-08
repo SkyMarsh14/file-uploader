@@ -58,6 +58,15 @@ const query = {
       });
     },
   },
+  file: {
+    getFiles: async (parentFolderId) => {
+      return await prisma.file.findMany({
+        where: {
+          parentFolderId: parentFolderId,
+        },
+      });
+    },
+  },
 };
 
 export default query;
