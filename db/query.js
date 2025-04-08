@@ -49,19 +49,29 @@ const query = {
     getAll: async () => {
       return await prisma.folder.findMany();
     },
-    getBase: async (userId) => {
-      const root = await prisma.folder.findFirst({
-        where: {
-          folderName: "root",
-          userId: userId,
-        },
-      });
+    getFolderByParentId: async (userId, parentFolderId) => {
+      const parentId =
+        parentFolderId ||
+        (
+          await prisma.folder.findFirst({
+            where: {
+              userId: userId,
+              folderName: "root",
+            },
+          })
+        ).id;
+
       const folders = await prisma.folder.findMany({
         where: {
-          parentFolderId: root.id,
+          parentFolderId: parentId,
         },
       });
-      return { root, folders };
+      const files = await prisma.file.findMany({
+        where: {
+          folderId: parentId,
+        },
+      });
+      return { folders, files };
     },
     create: async (folderName, parentFolderId) => {
       return await prisma.folder.create({
