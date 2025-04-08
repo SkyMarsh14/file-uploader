@@ -9,12 +9,19 @@ const query = {
     register: async (username, password) => {
       const hashedPassword = await bcrypt.hash(password, 10);
       try {
-        await prisma.user.create({
+        const user = await prisma.user.create({
           data: {
             password: hashedPassword,
             username: username,
           },
         });
+        const folder = await prisma.folder.create({
+          data: {
+            folderName: "root",
+            userId: user.id,
+          },
+        });
+        return { user, folder };
       } catch (err) {
         console.log(err);
         throw new Error(err);
@@ -42,10 +49,16 @@ const query = {
     getAll: async () => {
       return await prisma.folder.findMany();
     },
-    getRootFolders: async () => {
+    getBaseFolders: async (userId) => {
+      const root = await prisma.folder.findFirst({
+        where: {
+          folderName: "root",
+          userId: userId,
+        },
+      });
       return await prisma.folder.findMany({
         where: {
-          parentFolderId: null,
+          parentFolderId: root.id,
         },
       });
     },
@@ -53,15 +66,6 @@ const query = {
       return await prisma.folder.create({
         data: {
           folderName: folderName,
-          parentFolderId: parentFolderId,
-        },
-      });
-    },
-  },
-  file: {
-    getFiles: async (parentFolderId) => {
-      return await prisma.file.findMany({
-        where: {
           parentFolderId: parentFolderId,
         },
       });
