@@ -49,18 +49,19 @@ const query = {
     getAll: async () => {
       return await prisma.folder.findMany();
     },
-    getBaseFolders: async (userId) => {
+    getBase: async (userId) => {
       const root = await prisma.folder.findFirst({
         where: {
           folderName: "root",
           userId: userId,
         },
       });
-      return await prisma.folder.findMany({
+      const folders = await prisma.folder.findMany({
         where: {
           parentFolderId: root.id,
         },
       });
+      return { root, folders };
     },
     create: async (folderName, parentFolderId) => {
       return await prisma.folder.create({

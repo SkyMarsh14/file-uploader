@@ -30,9 +30,15 @@
 <% } %> <% if(locals.folders){ %>
 <ul>
   <% folders.map((folder)=>{ %>
-  <li><%=folder.folderName %></li>
+  <li><a href="/upload/<%=folder.id %>"><%=folder.folderName %></a></li>
   <% }) %>
 </ul>
-<% } %>
+<% if(locals.files){ %>
+<ul>
+  <% files.map((file)=>{ %>
+  <li><%=file.fileName %></li>
+  <% }) %>
+</ul>
+<% } %> <% } %>
 <button type="button" class="newFileBtn">New File</button>
 <button type="button" class="newFolderBtn">New Folder</button>

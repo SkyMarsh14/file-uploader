@@ -5,11 +5,12 @@ const validateFolderName = [
 ];
 const uploadController = {
   get_main: async (req, res) => {
-    const folders = await query.folder.getBaseFolders(req.user.userId);
+    const data = await query.folder.getBase(req.user.userId);
     res.render("home", {
       page: "upload",
       user: req.user,
-      folders: folders,
+      folders: data.folders,
+      files: data.root.files || null,
     });
   },
   post_file: async (req, res) => {
