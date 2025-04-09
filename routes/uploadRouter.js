@@ -26,4 +26,5 @@ uploadRouter.post(
   uploadController.validateForm,
   uploadController.rename_folder
 );
+uploadRouter.post("/folder/:folderId/delete", uploadController.delete_folder);
 export default uploadRouter;

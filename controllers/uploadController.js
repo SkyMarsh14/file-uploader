@@ -26,7 +26,8 @@ const uploadController = {
     });
   },
   post_file: async (req, res) => {
-    await query.res.send("Successfully uploaded.");
+    await query.file.create(req.file.originalUrl, req.params.folderId);
+    res.redirect(`/upload/${req.params.folderId}`);
   },
   create_folder: [
     validateFolderName,
@@ -47,6 +48,13 @@ const uploadController = {
       res.redirect(`/upload/${parentId}`);
     },
   ],
+  delete_folder: async (req, res) => {
+    const folderId = req.params.folderId;
+    const parentId = (await query.folder.getFolderById(folderId))
+      .parentFolderId;
+    await query.folder.delete(folderId);
+    res.redirect(`/upload/${parentId}`);
+  },
   validateForm: async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

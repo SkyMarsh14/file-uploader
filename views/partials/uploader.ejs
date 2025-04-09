@@ -30,6 +30,16 @@
     <button type="submit">Ok</button>
   </form>
 </dialog>
+<dialog class="folder-delete">
+  <form class="delete-form" method="post">
+    <label for="delete-input"
+      >Deleting this folder will delete all the files and folders inside. Are
+      you sure?</label
+    >
+    <button class="close-modal">Cancel</button>
+    <button type="submit">Ok</button>
+  </form>
+</dialog>
 <% if(locals.tree){ %>
 <nav class="folder-tree">
   <% tree.map((folder,index)=>{ %> <% if(index===0){ %>

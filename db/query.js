@@ -115,16 +115,22 @@ const query = {
         },
       });
     },
-
-    file: {
-      create: async (fileName, folderId) => {
-        return await prisma.file.create({
-          data: {
-            fileName: fileName,
-            folderId: folderId,
-          },
-        });
-      },
+    delete: async (folderId) => {
+      return await prisma.folder.delete({
+        where: {
+          id: folderId,
+        },
+      });
+    },
+  },
+  file: {
+    create: async (fileName, folderId) => {
+      return await prisma.file.create({
+        data: {
+          fileName: fileName,
+          folderId: folderId,
+        },
+      });
     },
   },
 };

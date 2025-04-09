@@ -39,3 +39,14 @@ renameBtns.forEach((btn) => {
       "/upload/folder/" + folderId + "/rename";
   });
 });
+const deleteBtns = document.querySelectorAll(".folder-delete-btn");
+deleteBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    document.querySelector(".folder-delete").showModal();
+    const a = btn.closest("li.folder-list").querySelector("a.folder-link");
+    const folderId = btn.closest("li").dataset.folderId;
+    document.querySelector(".delete-form").action =
+      "/upload/folder/" + folderId + "/delete";
+  });
+});
