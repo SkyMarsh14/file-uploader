@@ -17,3 +17,11 @@ closeModalBtns.forEach((btn) => {
     btn.closest("dialog").close();
   });
 });
+const dropdownToggleBtns = document.querySelectorAll(".folder-dropdown-btn");
+dropdownToggleBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const li = btn.closest(".folder-list");
+    li.querySelector(".edit-dropdown-container").classList.toggle("visible");
+  });
+});

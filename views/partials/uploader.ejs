@@ -40,7 +40,14 @@
 <% } %> <% if(locals.folders.length){ %>
 <ul>
   <% folders.map((folder)=>{ %>
-  <li><a href="<%=folder.id %>"><%=folder.folderName %></a></li>
+  <li data-folder-id="<%=folder.id %>" class="folder-list">
+    <a href="<%=folder.id %>"><%=folder.folderName %></a>
+    <button class="folder-dropdown-btn">Edit</button>
+    <div class="edit-dropdown-container">
+      <button class="folder-rename-btn" type="button">Rename</button>
+      <button class="folder-delete-btn" type="button">Delete</button>
+    </div>
+  </li>
   <% }) %>
 </ul>
 <% if(locals.files.length){ %>

@@ -2,3 +2,10 @@
   display: flex;
   gap: 0.5em;
 }
+.edit-dropdown-container {
+  display: none;
+}
+.edit-dropdown-container.visible {
+  display: flex;
+  flex-direction: column;
+}
