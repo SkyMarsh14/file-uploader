@@ -1,26 +1,28 @@
 import { body, validationResult } from "express-validator";
 import query from "./../db/query.js";
+import getTree from "../lib/tree.js";
 const validateFolderName = [
   body("folderName").trim().notEmpty().withMessage("Folder name is required."),
 ];
 const uploadController = {
   get_folder: async (req, res) => {
+    const userId = req.user.id;
+    const folderId = req.params.folderId;
     let data;
-    if (req.params.folderId === req.user.id) {
-      data = await query.folder.getFolderByParentId(req.user.id);
+    let tree;
+    if (folderId === userId) {
+      data = await query.folder.getFolderByParentId(userId);
     } else {
-      data = await query.folder.getFolderByParentId(
-        req.user.id,
-        req.params.folderId
-      );
+      data = await query.folder.getFolderByParentId(userId, folderId);
+      tree = await getTree(folderId);
     }
-
     res.render("home", {
       page: "upload",
       user: req.user,
       folders: data.folders,
       files: data.files || null,
       folderId: data.parentId,
+      tree: tree,
     });
   },
   post_file: async (req, res) => {

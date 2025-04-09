@@ -22,7 +22,16 @@
     <button type="button" class="close-modal">X</button>
   </form>
 </dialog>
-<% if(locals.errors){ %>
+<% if(locals.tree){ %>
+<nav class="folder-tree">
+  <% tree.map((folder,index)=>{ %> <% if(index===0){ %>
+  <a href="<%=user.id %>"><%=user.username %>'s Drive</a>
+  <% }else{ %>
+  <div class="nav-arrow"><</div>
+  <a href="<%=folder.id %>"><%=folder.folderName %></a>
+  <% }}) %>
+</nav>
+<% } %> <% if(locals.errors){ %>
 <ul class="errors">
   <% errors.map((err)=>{ %>
   <li><%=err %></li>
