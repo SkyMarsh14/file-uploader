@@ -81,6 +81,23 @@ const query = {
         },
       });
     },
+    getParent: async (folderId) => {
+      const currentFolder = await prisma.folder.findUnique({
+        where: {
+          id: folderId,
+        },
+      });
+      const parentId = currentFolder.parentFolderId || null;
+      if (parentId === null) {
+        return null;
+      }
+      const parentFolder = await prisma.folder.findUnique({
+        where: {
+          id: currentFolder.parentFolderId,
+        },
+      });
+      return parentFolder;
+    },
 
     file: {
       create: async (fileName, folderId) => {
