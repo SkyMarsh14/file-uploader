@@ -6,6 +6,5 @@
   display: none;
 }
 .edit-dropdown-container.visible {
-  display: flex;
-  flex-direction: column;
+  display: grid;
 }

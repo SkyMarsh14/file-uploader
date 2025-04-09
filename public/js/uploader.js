@@ -25,3 +25,14 @@ dropdownToggleBtns.forEach((btn) => {
     li.querySelector(".edit-dropdown-container").classList.toggle("visible");
   });
 });
+const renameModal = document.querySelector(".folder-rename");
+const renameBtns = document.querySelectorAll(".folder-rename-btn");
+renameBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    renameModal.showModal();
+    document.querySelector("#rename-input").value = btn
+      .closest("li.folder-list")
+      .querySelector("a.folder-link").textContent;
+  });
+});
