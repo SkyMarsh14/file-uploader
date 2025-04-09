@@ -71,7 +71,7 @@ const query = {
           folderId: parentId,
         },
       });
-      return { folders, files };
+      return { folders, files, parentId };
     },
     create: async (folderName, parentFolderId) => {
       return await prisma.folder.create({
@@ -80,6 +80,17 @@ const query = {
           parentFolderId: parentFolderId,
         },
       });
+    },
+
+    file: {
+      create: async (fileName, folderId) => {
+        return await prisma.file.create({
+          data: {
+            fileName: fileName,
+            folderId: folderId,
+          },
+        });
+      },
     },
   },
 };

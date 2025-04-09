@@ -8,7 +8,8 @@
   </form>
 </dialog>
 <dialog id="folder-dialog" class="upload-form-dialog">
-  <form action="/upload/folder" method="post">
+  <% const folderUrl=locals.folderId || null %>
+  <form action="/upload/folder/<%=folderUrl %>" method="post">
     <label for="folder">New Folder</label>
     <input
       type="text"

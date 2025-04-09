@@ -1,6 +1,6 @@
 const indexController = {
   get_main: async (req, res) => {
-    res.redirect("/upload");
+    res.redirect(`/upload/${req.user.id}`);
   },
 };
 

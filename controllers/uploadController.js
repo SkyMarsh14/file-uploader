@@ -4,17 +4,27 @@ const validateFolderName = [
   body("folderName").trim().notEmpty().withMessage("Folder name is required."),
 ];
 const uploadController = {
-  get_main: async (req, res) => {
-    const data = await query.folder.getFolderByParentId(req.user.userId);
+  get_folder: async (req, res) => {
+    let data;
+    if (req.params.folderId === req.user.id) {
+      data = await query.folder.getFolderByParentId(req.user.id);
+    } else {
+      data = await query.folder.getFolderByParentId(
+        req.user.id,
+        req.params.folderId
+      );
+    }
+
     res.render("home", {
       page: "upload",
       user: req.user,
       folders: data.folders,
       files: data.files || null,
+      folderId: data.parentId,
     });
   },
   post_file: async (req, res) => {
-    res.send("Successfully uploaded.");
+    await query.res.send("Successfully uploaded.");
   },
   post_folder: [
     validateFolderName,
@@ -27,8 +37,8 @@ const uploadController = {
           .render("home", { page: "upload", errors: errors });
       }
       const folderName = req.body.folderName;
-      await query.folder.create(folderName);
-      res.redirect("/upload");
+      const folder = await query.folder.create(folderName, req.params.folderId);
+      res.redirect(`/upload/${folder.parentFolderId}`);
     },
   ],
 };

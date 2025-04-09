@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 const uploadRouter = Router();
-uploadRouter.get("/:folderId", uploadController.get_main);
+uploadRouter.get("/:folderId", uploadController.get_folder);
 uploadRouter.post("/", upload.single("userFile"), uploadController.post_file);
-uploadRouter.post("/folder", uploadController.post_folder);
+uploadRouter.post("/folder/:folderId", uploadController.post_folder);
 export default uploadRouter;
