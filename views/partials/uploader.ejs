@@ -9,7 +9,7 @@
 </dialog>
 <dialog id="folder-dialog" class="upload-form-dialog">
   <% const folderUrl=locals.folderId || null %>
-  <form action="/upload/folder/<%=folderUrl %>" method="post">
+  <form action="folder/<%=folderUrl %>" method="post">
     <label for="folder">New Folder</label>
     <input
       type="text"
@@ -34,16 +34,16 @@
 <% } %> <% if(locals.errors){ %>
 <ul class="errors">
   <% errors.map((err)=>{ %>
-  <li><%=err %></li>
+  <li><%=err.msg %></li>
   <% }) %>
 </ul>
-<% } %> <% if(locals.folders){ %>
+<% } %> <% if(locals.folders.length){ %>
 <ul>
   <% folders.map((folder)=>{ %>
-  <li><a href="/upload/<%=folder.id %>"><%=folder.folderName %></a></li>
+  <li><a href="<%=folder.id %>"><%=folder.folderName %></a></li>
   <% }) %>
 </ul>
-<% if(locals.files){ %>
+<% if(locals.files.length){ %>
 <ul>
   <% files.map((file)=>{ %>
   <li><%=file.fileName %></li>
