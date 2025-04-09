@@ -37,7 +37,7 @@ app.use(passport.session());
 
 app.use("/", loginRouter);
 app.use("/", indexRouter);
-app.use("/upload", isAuth, uploadRouter);
+app.use("/upload", uploadRouter);
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

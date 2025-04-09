@@ -31,8 +31,11 @@ renameBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     renameModal.showModal();
-    document.querySelector("#rename-input").value = btn
-      .closest("li.folder-list")
-      .querySelector("a.folder-link").textContent;
+    const a = btn.closest("li.folder-list").querySelector("a.folder-link");
+
+    document.querySelector("#rename-input").value = a.textContent;
+    const folderId = btn.closest("li").dataset.folderId;
+    document.querySelector(".rename-form").action =
+      "/upload/folder/" + folderId + "/rename";
   });
 });

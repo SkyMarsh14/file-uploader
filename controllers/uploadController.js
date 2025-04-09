@@ -28,20 +28,31 @@ const uploadController = {
   post_file: async (req, res) => {
     await query.res.send("Successfully uploaded.");
   },
-  post_folder: [
+  create_folder: [
     validateFolderName,
 
     async (req, res) => {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res
-          .status(400)
-          .render("home", { page: "upload", errors: errors });
-      }
       const folderName = req.body.folderName;
       const folder = await query.folder.create(folderName, req.params.folderId);
       res.redirect(`/upload/${folder.parentFolderId}`);
     },
   ],
+  rename_folder: [
+    validateFolderName,
+    async (req, res) => {
+      const folderId = req.params.folderId;
+      const parentId = (await query.folder.getFolderById(folderId))
+        .parentFolderId;
+      await query.folder.rename(folderId, req.body.folderName);
+      res.redirect(`/upload/${parentId}`);
+    },
+  ],
+  validateForm: async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("home", { page: "upload", errors: errors });
+    }
+    return next();
+  },
 };
 export default uploadController;

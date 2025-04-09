@@ -9,7 +9,7 @@
 </dialog>
 <dialog id="folder-dialog" class="upload-form-dialog">
   <% const folderUrl=locals.folderId || null %>
-  <form action="folder/<%=folderUrl %>" method="post">
+  <form action="folder/<%=folderUrl %>/create" method="post">
     <label for="folder">New Folder</label>
     <input
       type="text"
@@ -23,11 +23,11 @@
   </form>
 </dialog>
 <dialog class="folder-rename">
-  <form>
+  <form class="rename-form" method="post">
     <label for="rename-input">Rename</label>
-    <input type="text" id="rename-input" />
+    <input type="text" id="rename-input" name="folderName" required />
     <button type="button" class="close-modal">Cancel</button>
-    <button type="button">Ok</button>
+    <button type="submit">Ok</button>
   </form>
 </dialog>
 <% if(locals.tree){ %>

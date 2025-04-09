@@ -1,6 +1,7 @@
 import { Router } from "express";
 import uploadController from "../controllers/uploadController.js";
 import multer from "multer";
+import isAuth from "../lib/isAuth.js";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, process.env.FILE_PATH);
@@ -12,7 +13,17 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 const uploadRouter = Router();
+uploadRouter.use(isAuth);
 uploadRouter.get("/:folderId", uploadController.get_folder);
 uploadRouter.post("/", upload.single("userFile"), uploadController.post_file);
-uploadRouter.post("/folder/:folderId", uploadController.post_folder);
+uploadRouter.post(
+  "/folder/:folderId/create",
+  uploadController.validateForm,
+  uploadController.create_folder
+);
+uploadRouter.post(
+  "/folder/:folderId/rename",
+  uploadController.validateForm,
+  uploadController.rename_folder
+);
 export default uploadRouter;

@@ -49,6 +49,13 @@ const query = {
     getAll: async () => {
       return await prisma.folder.findMany();
     },
+    getFolderById: async (folderId) => {
+      return await prisma.folder.findUnique({
+        where: {
+          id: folderId,
+        },
+      });
+    },
     getFolderByParentId: async (userId, parentFolderId) => {
       const parentId =
         parentFolderId ||
@@ -97,6 +104,16 @@ const query = {
         },
       });
       return parentFolder;
+    },
+    rename: async (folderId, folderName) => {
+      return await prisma.folder.update({
+        where: {
+          id: folderId,
+        },
+        data: {
+          folderName: folderName,
+        },
+      });
     },
 
     file: {
