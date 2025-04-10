@@ -24,7 +24,6 @@ const uploadController = {
     });
   },
   post_file: async (req, res) => {
-    await query.file.create(req.file.originalUrl, req.params.folderId);
     res.redirect(`/upload/${req.params.folderId}`);
   },
   create_folder: [

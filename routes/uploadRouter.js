@@ -2,12 +2,17 @@ import { Router } from "express";
 import uploadController from "../controllers/uploadController.js";
 import multer from "multer";
 import isAuth from "../lib/isAuth.js";
+import query from "../db/query.js";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, process.env.FILE_PATH);
   },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
+  filename: async (req, file, cb) => {
+    const userFile = await query.file.create(
+      file.originalname,
+      req.params.folderId
+    );
+    cb(null, userFile.id);
   },
 });
 
@@ -19,4 +24,7 @@ uploadRouter.post("/", upload.single("userFile"), uploadController.post_file);
 uploadRouter.post("/folder/:folderId/create", uploadController.create_folder);
 uploadRouter.post("/folder/:folderId/rename", uploadController.rename_folder);
 uploadRouter.post("/folder/:folderId/delete", uploadController.delete_folder);
+uploadRouter.use("*params", (req, res) => {
+  res.redirect(`/upload/${req.user.id}`);
+});
 export default uploadRouter;
