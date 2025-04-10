@@ -1,9 +1,7 @@
-import { body, validationResult } from "express-validator";
 import query from "./../db/query.js";
 import getTree from "../lib/tree.js";
-const validateFolderName = [
-  body("folderName").trim().notEmpty().withMessage("Folder name is required."),
-];
+import recursiveFolderDelete from "../lib/recursiveFolderDelete.js";
+import { validateFolderName, validateForm } from "../lib/formValidation.js";
 const uploadController = {
   get_folder: async (req, res) => {
     const userId = req.user.id;
@@ -31,7 +29,7 @@ const uploadController = {
   },
   create_folder: [
     validateFolderName,
-
+    validateForm,
     async (req, res) => {
       const folderName = req.body.folderName;
       const folder = await query.folder.create(folderName, req.params.folderId);
@@ -40,6 +38,7 @@ const uploadController = {
   ],
   rename_folder: [
     validateFolderName,
+    validateForm,
     async (req, res) => {
       const folderId = req.params.folderId;
       const parentId = (await query.folder.getFolderById(folderId))
@@ -57,15 +56,8 @@ const uploadController = {
     } else {
       url = folder.parentFolderId;
     }
-    const deleted = await query.folder.delete(folderId);
+    const deleted = await recursiveFolderDelete(folderId);
     res.redirect(`/upload/${url}`);
-  },
-  validateForm: async (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).render("home", { page: "upload", errors: errors });
-    }
-    return next();
   },
 };
 export default uploadController;

@@ -122,7 +122,30 @@ const query = {
         },
       });
     },
+    delete_by_parentFolderId: async (parentFolderId) => {
+      return await prisma.folder.deleteMany({
+        where: {
+          parentFolderId: parentFolderId,
+        },
+      });
+    },
+    deleteMany: async (condition) => {
+      return await prisma.folder.deleteMany({
+        where: condition,
+      });
+    },
+    findMany: async (condition) => {
+      return await prisma.folder.findMany({
+        where: condition,
+      });
+    },
+    find: async (condition) => {
+      return await prisma.folder.findFirst({
+        where: condition,
+      });
+    },
   },
+
   file: {
     create: async (fileName, folderId) => {
       return await prisma.file.create({

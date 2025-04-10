@@ -16,15 +16,7 @@ const uploadRouter = Router();
 uploadRouter.use(isAuth);
 uploadRouter.get("/:folderId", uploadController.get_folder);
 uploadRouter.post("/", upload.single("userFile"), uploadController.post_file);
-uploadRouter.post(
-  "/folder/:folderId/create",
-  uploadController.validateForm,
-  uploadController.create_folder
-);
-uploadRouter.post(
-  "/folder/:folderId/rename",
-  uploadController.validateForm,
-  uploadController.rename_folder
-);
+uploadRouter.post("/folder/:folderId/create", uploadController.create_folder);
+uploadRouter.post("/folder/:folderId/rename", uploadController.rename_folder);
 uploadRouter.post("/folder/:folderId/delete", uploadController.delete_folder);
 export default uploadRouter;
