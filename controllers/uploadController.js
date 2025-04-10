@@ -50,10 +50,15 @@ const uploadController = {
   ],
   delete_folder: async (req, res) => {
     const folderId = req.params.folderId;
-    const parentId = (await query.folder.getFolderById(folderId))
-      .parentFolderId;
-    await query.folder.delete(folderId);
-    res.redirect(`/upload/${parentId}`);
+    const folder = await query.folder.getFolderById(folderId);
+    let url;
+    if (folder.parentFolderId === null) {
+      url = req.user.userId;
+    } else {
+      url = folder.parentFolderId;
+    }
+    const deleted = await query.folder.delete(folderId);
+    res.redirect(`/upload/${url}`);
   },
   validateForm: async (req, res, next) => {
     const errors = validationResult(req);

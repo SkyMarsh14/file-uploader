@@ -34,7 +34,7 @@ renameBtns.forEach((btn) => {
     const a = btn.closest("li.folder-list").querySelector("a.folder-link");
 
     document.querySelector("#rename-input").value = a.textContent;
-    const folderId = btn.closest("li").dataset.folderId;
+    const folderId = btn.closest("li.folder-list").dataset.folderId;
     document.querySelector(".rename-form").action =
       "/upload/folder/" + folderId + "/rename";
   });
@@ -44,8 +44,7 @@ deleteBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     document.querySelector(".folder-delete").showModal();
-    const a = btn.closest("li.folder-list").querySelector("a.folder-link");
-    const folderId = btn.closest("li").dataset.folderId;
+    const folderId = btn.closest("li.folder-list").dataset.folderId;
     document.querySelector(".delete-form").action =
       "/upload/folder/" + folderId + "/delete";
   });
