@@ -8,7 +8,7 @@ const uploadController = {
     const folderId = req.params.folderId;
     let data;
     let tree;
-    if (folderId === userId) {
+    if (folderId === userId || !folderId) {
       data = await query.folder.getFolderByParentId(userId);
     } else {
       data = await query.folder.getFolderByParentId(userId, folderId);

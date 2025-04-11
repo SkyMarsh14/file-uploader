@@ -94,8 +94,7 @@ const query = {
           id: folderId,
         },
       });
-      const parentId = currentFolder.parentFolderId || null;
-      if (parentId === null) {
+      if (Object.hasOwn(currentFolder, "parentFolderId")) {
         return null;
       }
       const parentFolder = await prisma.folder.findUnique({
@@ -153,6 +152,11 @@ const query = {
           fileName: fileName,
           folderId: folderId,
         },
+      });
+    },
+    findUnique: async (condition) => {
+      return await prisma.file.findUnique({
+        where: condition,
       });
     },
   },

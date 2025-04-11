@@ -3,15 +3,15 @@ import uploadController from "../controllers/uploadController.js";
 import multer from "multer";
 import isAuth from "../lib/isAuth.js";
 import query from "../db/query.js";
+import nameFile from "../lib/nameFile.js";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, process.env.FILE_PATH);
   },
   filename: async (req, file, cb) => {
-    const userFile = await query.file.create(
-      file.originalname,
-      req.params.folderId
-    );
+    const folderId = req.params.folderId;
+    const fileName = await nameFile(file.originalname, folderId);
+    const userFile = await query.file.create(fileName, folderId);
     cb(null, userFile.id);
   },
 });
