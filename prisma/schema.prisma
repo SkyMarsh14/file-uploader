@@ -9,10 +9,10 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(uuid())
-  username String
-  password String
-  folders  Folder[]
+  id         String  @id @default(uuid())
+  username   String
+  password   String
+  rootFolder Folder?
 
   @@unique([username, password])
 }
@@ -31,14 +31,16 @@ model Folder {
   parentFolderId String?
   files          File[]
   User           User?   @relation(fields: [userId], references: [id])
-  userId         String?
+  userId         String? @unique
 
   @@unique([folderName, parentFolderId])
 }
 
 model File {
   id       String  @id @default(uuid())
-  fileName String  @unique
+  fileName String
   Folder   Folder? @relation(fields: [folderId], references: [id])
   folderId String?
+
+  @@unique([fileName, folderId])
 }

@@ -4,16 +4,13 @@ import recursiveFolderDelete from "../lib/recursiveFolderDelete.js";
 import { validateFolderName, validateForm } from "../lib/formValidation.js";
 const uploadController = {
   get_folder: async (req, res) => {
-    const userId = req.user.id;
     const folderId = req.params.folderId;
-    let data;
-    let tree;
-    if (folderId === userId || !folderId) {
-      data = await query.folder.getFolderByParentId(userId);
-    } else {
-      data = await query.folder.getFolderByParentId(userId, folderId);
-      tree = await getTree(folderId);
+    const folder = await query.folder.getFolderById(folderId);
+    if (!folder) {
+      res.redirect("/");
     }
+    const data = await query.folder.getFolderByParentId(folderId);
+    const tree = await getTree(folderId);
     res.render("home", {
       page: "upload",
       user: req.user,

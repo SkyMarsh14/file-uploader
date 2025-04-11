@@ -44,6 +44,17 @@ const query = {
     deleteAll: async () => {
       return await prisma.user.deleteMany();
     },
+    findRootFolder: async (userId) => {
+      const data = await prisma.user.findUnique({
+        where: {
+          id: userId,
+        },
+        select: {
+          rootFolder: true,
+        },
+      });
+      return data.rootFolder.id;
+    },
   },
   folder: {
     getAll: async () => {
@@ -56,29 +67,18 @@ const query = {
         },
       });
     },
-    getFolderByParentId: async (userId, parentFolderId) => {
-      const parentId =
-        parentFolderId ||
-        (
-          await prisma.folder.findFirst({
-            where: {
-              userId: userId,
-              folderName: "root",
-            },
-          })
-        ).id;
-
+    getFolderByParentId: async (parentFolderId) => {
       const folders = await prisma.folder.findMany({
         where: {
-          parentFolderId: parentId,
+          parentFolderId: parentFolderId,
         },
       });
       const files = await prisma.file.findMany({
         where: {
-          folderId: parentId,
+          folderId: parentFolderId,
         },
       });
-      return { folders, files, parentId };
+      return { folders, files, parentFolderId };
     },
     create: async (folderName, parentFolderId) => {
       return await prisma.folder.create({
@@ -94,7 +94,7 @@ const query = {
           id: folderId,
         },
       });
-      if (Object.hasOwn(currentFolder, "parentFolderId")) {
+      if (currentFolder.parentFolderId === null) {
         return null;
       }
       const parentFolder = await prisma.folder.findUnique({
