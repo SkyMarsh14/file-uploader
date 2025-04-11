@@ -16,7 +16,7 @@ const uploadController = {
       user: req.user,
       folders: data.folders,
       files: data.files || null,
-      folderId: data.parentId,
+      folderId: data.parentFolderId,
       tree: tree,
     });
   },

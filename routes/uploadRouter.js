@@ -20,11 +20,13 @@ const upload = multer({ storage: storage });
 const uploadRouter = Router();
 uploadRouter.use(isAuth);
 uploadRouter.get("/:folderId", uploadController.get_folder);
-uploadRouter.post("/", upload.single("userFile"), uploadController.post_file);
+uploadRouter.post(
+  "/file/:folderId/create",
+  upload.single("userFile"),
+  uploadController.post_file
+);
 uploadRouter.post("/folder/:folderId/create", uploadController.create_folder);
 uploadRouter.post("/folder/:folderId/rename", uploadController.rename_folder);
 uploadRouter.post("/folder/:folderId/delete", uploadController.delete_folder);
-uploadRouter.use("*params", (req, res) => {
-  res.redirect(`/upload/${req.user.id}`);
-});
+
 export default uploadRouter;
