@@ -64,7 +64,8 @@ const uploadController = {
     res.redirect(`/upload/${url}`);
   },
   file_details: async (req, res) => {
-    res.render("home");
+    const file = await query.file.findUnique({ id: req.params.fileId });
+    res.render("home", file);
   },
 };
 export default uploadController;

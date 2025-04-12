@@ -75,7 +75,10 @@
 <% if(locals.files.length){ %>
 <ul>
   <% files.map((file)=>{ %>
-  <li data-file-id="<%=file.id %>"><%=file.fileName %></li>
+  <li data-file-id="<%=file.id %>">
+    <div><%=file.fileName %></div>
+    <button class="file-view-btn">View</button>
+  </li>
   <% }) %>
 </ul>
 <% } %> <% } %>

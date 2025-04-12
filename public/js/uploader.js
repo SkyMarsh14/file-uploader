@@ -49,3 +49,11 @@ deleteBtns.forEach((btn) => {
       "/upload/folder/" + folderId + "/delete";
   });
 });
+const fileViewBtns = document.querySelectorAll(".file-view-btn");
+fileViewBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const fileId = btn.closest("li").dataset.fileId;
+    window.location.href = `/upload/file/${fileId}/details`;
+  });
+});

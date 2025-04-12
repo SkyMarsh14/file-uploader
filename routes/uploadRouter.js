@@ -11,7 +11,7 @@ uploadRouter.post(
   handleFileUpload.single("userFile"),
   uploadController.post_file
 );
-uploadRouter.get("/file/:fildId/details", uploadController.file_details);
+uploadRouter.get("/file/:fileId/details", uploadController.file_details);
 uploadRouter.post("/folder/:folderId/create", uploadController.create_folder);
 uploadRouter.post("/folder/:folderId/rename", uploadController.rename_folder);
 uploadRouter.post("/folder/:folderId/delete", uploadController.delete_folder);
