@@ -2,8 +2,9 @@ import query from "./../db/query.js";
 import getTree from "../lib/tree.js";
 import recursiveFolderDelete from "../lib/recursiveFolderDelete.js";
 import { validateFolderName, validateForm } from "../lib/formValidation.js";
-import path, { format } from "node:path";
+import path from "node:path";
 import formatFileSize from "../lib/formatFileSize.js";
+import { format } from "date-fns";
 const uploadController = {
   get_folder: async (req, res) => {
     const folderId = req.params.folderId;
@@ -66,9 +67,19 @@ const uploadController = {
   },
   file_details: async (req, res) => {
     const file = await query.file.findUnique({ id: req.params.fileId });
-
+    const tree = await getTree(file.folderId);
     file.size = formatFileSize(file.size);
-    res.render("home", { file, page: "fileDetails" });
+    const createdDay = format(file.created_at, "MMMMMMMMM dd, yyyy");
+    const createdTime = format(file.created_at, "p");
+    //Format like Thursday, April 10, 2025 at 1700
+    file.created_at = createdDay + " at " + createdTime;
+    res.render("home", {
+      file,
+      page: "fileDetails",
+      folderId: file.folderId,
+      tree,
+      user: req.user,
+    });
   },
 };
 export default uploadController;

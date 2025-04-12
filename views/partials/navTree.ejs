@@ -1,0 +1,10 @@
+<% if(locals.tree){ %>
+<nav class="folder-tree">
+  <% tree.map((folder,index)=>{ %> <% if(index===0){ %>
+  <a href="/upload/<%=folder.id %>"><%=user.username %>'s Drive</a>
+  <% }else{ %>
+  <div class="nav-arrow"><</div>
+  <a href="<%=folder.id %>"><%=folder.folderName %></a>
+  <% }}) %>
+</nav>
+<% } %>

@@ -44,16 +44,7 @@
     <button type="submit">Ok</button>
   </form>
 </dialog>
-<% if(locals.tree){ %>
-<nav class="folder-tree">
-  <% tree.map((folder,index)=>{ %> <% if(index===0){ %>
-  <a href="<%=folder.id %>"><%=user.username %>'s Drive</a>
-  <% }else{ %>
-  <div class="nav-arrow"><</div>
-  <a href="<%=folder.id %>"><%=folder.folderName %></a>
-  <% }}) %>
-</nav>
-<% } %> <% if(locals.errors){ %>
+<%-include('navTree') %> <% if(locals.errors){ %>
 <ul class="errors">
   <% errors.map((err)=>{ %>
   <li><%=err.msg %></li>
