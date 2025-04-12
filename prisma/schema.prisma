@@ -37,10 +37,13 @@ model Folder {
 }
 
 model File {
-  id       String  @id @default(uuid())
-  fileName String
-  Folder   Folder? @relation(fields: [folderId], references: [id])
-  folderId String?
+  id         String   @id @default(uuid())
+  fileName   String
+  Folder     Folder?  @relation(fields: [folderId], references: [id])
+  folderId   String?
+  extention  String?
+  size       Int?
+  created_at DateTime @default(now())
 
   @@unique([fileName, folderId])
 }
