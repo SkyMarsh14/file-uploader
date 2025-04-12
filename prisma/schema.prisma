@@ -41,7 +41,7 @@ model File {
   fileName   String
   Folder     Folder?  @relation(fields: [folderId], references: [id])
   folderId   String?
-  extention  String?
+  extension  String?
   size       Int?
   created_at DateTime @default(now())
 

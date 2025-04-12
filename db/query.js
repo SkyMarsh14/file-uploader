@@ -159,6 +159,14 @@ const query = {
         where: condition,
       });
     },
+    update_by_id: async (fileId, data) => {
+      return await prisma.file.update({
+        where: {
+          id: fileId,
+        },
+        data: data,
+      });
+    },
   },
 };
 

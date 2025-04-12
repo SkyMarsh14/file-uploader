@@ -2,6 +2,7 @@ import query from "./../db/query.js";
 import getTree from "../lib/tree.js";
 import recursiveFolderDelete from "../lib/recursiveFolderDelete.js";
 import { validateFolderName, validateForm } from "../lib/formValidation.js";
+import path from "node:path";
 const uploadController = {
   get_folder: async (req, res) => {
     const folderId = req.params.folderId;
@@ -21,6 +22,13 @@ const uploadController = {
     });
   },
   post_file: async (req, res) => {
+    const extension = path.extname(req.file.filename);
+    const filename = req.file.filename.replace(extension, "");
+    const data = {
+      size: req.file.size,
+      extension: extension.slice(1),
+    };
+    const update = await query.file.update_by_id(filename, data);
     res.redirect(`/upload/${req.params.folderId}`);
   },
   create_folder: [
@@ -54,6 +62,9 @@ const uploadController = {
     }
     const deleted = await recursiveFolderDelete(folderId);
     res.redirect(`/upload/${url}`);
+  },
+  file_details: async (req, res) => {
+    res.render("home");
   },
 };
 export default uploadController;

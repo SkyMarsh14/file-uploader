@@ -10,7 +10,6 @@ import session from "express-session";
 import passport from "passport";
 import connection from "connect-pg-simple";
 import pool from "./db/pool.js";
-import isAuth from "./lib/isAuth.js";
 const pgSession = connection(session);
 const app = express();
 
