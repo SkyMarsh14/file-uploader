@@ -2,7 +2,8 @@ import query from "./../db/query.js";
 import getTree from "../lib/tree.js";
 import recursiveFolderDelete from "../lib/recursiveFolderDelete.js";
 import { validateFolderName, validateForm } from "../lib/formValidation.js";
-import path from "node:path";
+import path, { format } from "node:path";
+import formatFileSize from "../lib/formatFileSize.js";
 const uploadController = {
   get_folder: async (req, res) => {
     const folderId = req.params.folderId;
@@ -65,7 +66,9 @@ const uploadController = {
   },
   file_details: async (req, res) => {
     const file = await query.file.findUnique({ id: req.params.fileId });
-    res.render("home", file);
+
+    file.size = formatFileSize(file.size);
+    res.render("home", { file, page: "fileDetails" });
   },
 };
 export default uploadController;
