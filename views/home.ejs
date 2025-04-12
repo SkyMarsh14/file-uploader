@@ -12,7 +12,8 @@
     <main>
       <% switch(locals.page){ case "login": %> <%-include('partials/login') %>
       <% break; %> <% case "upload": %> <%-include('partials/uploader') %> <%
-      break;} %>
+      break; %> <% case "fileDetails": %> <%-include('partials/fileDetails') %>
+      <% break;} %>
     </main>
   </body>
 </html>
