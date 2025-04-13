@@ -8,7 +8,7 @@ uploadRouter.use(isAuth);
 uploadRouter.get("/:folderId", uploadController.get_folder);
 uploadRouter.post(
   "/file/:folderId/create",
-  handleFileUpload.single("userFile"),
+  handleFileUpload,
   uploadController.post_file
 );
 uploadRouter.get("/file/:fileId/details", uploadController.file_details);

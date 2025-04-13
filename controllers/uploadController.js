@@ -5,6 +5,9 @@ import { validateFolderName, validateForm } from "../lib/formValidation.js";
 import path from "node:path";
 import formatFileSize from "../lib/formatFileSize.js";
 import { format } from "date-fns";
+import cloudinaryUpload from "../config/cloudinary.js";
+import DatauriParser from "datauri/parser.js";
+const parser = new DatauriParser();
 const uploadController = {
   get_folder: async (req, res) => {
     const folderId = req.params.folderId;
@@ -24,13 +27,10 @@ const uploadController = {
     });
   },
   post_file: async (req, res) => {
-    const extension = path.extname(req.file.filename);
-    const filename = req.file.filename.replace(extension, "");
-    const data = {
-      size: req.file.size,
-      extension: extension.slice(1),
-    };
-    const update = await query.file.update_by_id(filename, data);
+    const extension = path.extname(req.file.originalname).toString();
+    const file64 = parser.format(extension, req.file.buffer);
+    const response = await cloudinaryUpload(file64.content);
+
     res.redirect(`/upload/${req.params.folderId}`);
   },
   create_folder: [
