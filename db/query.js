@@ -167,6 +167,19 @@ const query = {
         data: data,
       });
     },
+    upload: async (filename, size, url, mimetype, folderId) => {
+      return await prisma.file.create({
+        data: {
+          fileName: filename,
+          url: url,
+          size: size,
+          folderId,
+          folderId,
+          mimetype,
+          mimetype,
+        },
+      });
+    },
   },
 };
 

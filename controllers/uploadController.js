@@ -1,12 +1,13 @@
-import query from "./../db/query.js";
-import getTree from "../lib/tree.js";
-import recursiveFolderDelete from "../lib/recursiveFolderDelete.js";
-import { validateFolderName, validateForm } from "../lib/formValidation.js";
-import path from "node:path";
-import formatFileSize from "../lib/formatFileSize.js";
-import { format } from "date-fns";
-import cloudinaryUpload from "../config/cloudinary.js";
 import DatauriParser from "datauri/parser.js";
+import { format } from "date-fns";
+import path from "node:path";
+import cloudinaryUpload from "../config/cloudinary.js";
+import formatFileSize from "../lib/formatFileSize.js";
+import { validateFolderName, validateForm } from "../lib/formValidation.js";
+import nameFile from "../lib/nameFile.js";
+import recursiveFolderDelete from "../lib/recursiveFolderDelete.js";
+import getTree from "../lib/tree.js";
+import query from "./../db/query.js";
 const parser = new DatauriParser();
 const uploadController = {
   get_folder: async (req, res) => {
@@ -27,11 +28,19 @@ const uploadController = {
     });
   },
   post_file: async (req, res) => {
+    const folderId = req.params.folderId;
     const extension = path.extname(req.file.originalname).toString();
-    const file64 = parser.format(extension, req.file.buffer);
-    const response = await cloudinaryUpload(file64.content);
-
-    res.redirect(`/upload/${req.params.folderId}`);
+    const file = parser.format(extension, req.file.buffer);
+    const response = await cloudinaryUpload(file.content);
+    const filename = await nameFile(req.file.originalname, folderId);
+    const upload = await query.file.upload(
+      filename,
+      req.file.size,
+      response.url,
+      file.mimetype,
+      folderId
+    );
+    res.redirect(`/upload/${folderId}`);
   },
   create_folder: [
     validateFolderName,
