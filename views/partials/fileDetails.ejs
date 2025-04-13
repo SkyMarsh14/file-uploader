@@ -4,5 +4,9 @@
   <div class="created-at">Created: <%=file.created_at %></div>
   <div class="file-size">Size: <%=file.size %></div>
   <div class="file-type">Type: <%=file.extension %></div>
+  <% const fileLocation=file.id + '.' + file.extension%>
+  <a href="/uploads/<%=fileLocation %>" download="<%=file.fileName %>">
+    <button class="download-btn">Download</button>
+  </a>
 </div>
 <a href="/upload/<%=folderId %>">Go back to the folder</a>
