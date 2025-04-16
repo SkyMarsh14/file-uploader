@@ -12,6 +12,7 @@ div.main-container {
 aside {
   grid-row: 1/2;
   grid-column: 1/2;
+  border-right: 1px solid rgb(195, 195, 195);
 }
 a.root-folder {
   display: flex;
@@ -82,4 +83,46 @@ aside {
 }
 .dialog-btn:hover {
   filter: brightness(90%);
+}
+.content-list {
+  padding-inline-start: 0;
+  font-size: 1.1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  li {
+    background-color: white;
+    padding: 0.3em;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+  }
+  li::before {
+    content: "";
+    display: inline-block;
+    min-height: 1em;
+    min-width: 1em;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+li.folder-list::before {
+  background-image: url("/icons/folder-dark.svg");
+}
+li.file-list::before {
+  background-image: url("/icons/file-dark.svg");
+}
+.content-list > li:hover {
+  filter: brightness(85%);
+}
+.file-name,
+.folder-name {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.file-view-btn {
+  min-width: fit-content;
+  text-overflow: unset;
 }
