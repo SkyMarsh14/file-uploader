@@ -46,7 +46,10 @@ button.submit:hover {
   display: flex;
   gap: 0.2em;
   max-height: 100%;
-  color: rgb(238, 56, 56);
+  color: var(--errors-warning-red);
+}
+img[alt="alert icon"] {
+  filter: var(--errors-warning-red-filter);
 }
 .error-line > img {
   width: 1em;
@@ -59,5 +62,5 @@ ul.errors-list {
 }
 a.inline.link:visited,
 a.inline.link:active {
-  color: rgb(13, 197, 253);
+  color: rgba(106, 0, 255, 0.76);
 }

@@ -1,0 +1,9 @@
+body {
+  min-height: 100vh;
+}
+main {
+  display: grid;
+}
+div.main-container {
+  padding: 1em 2em;
+}

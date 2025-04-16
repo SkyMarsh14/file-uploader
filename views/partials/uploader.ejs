@@ -1,77 +1,80 @@
 <script src="/js/uploader.js" defer></script>
+<link rel="stylesheet" href="/css/uploader.css" />
 <% const folderUrl=locals.folderId || null %>
-<dialog id="file-dialog" class="upload-form-dialog">
-  <form
-    action="/upload/file/<%=folderUrl %>/create"
-    method="post"
-    enctype="multipart/form-data"
-  >
-    <label for="file"> Upload a file </label>
-    <input type="file" name="userFile" />
-    <button type="submit">Upload</button>
-    <button type="button" class="close-modal">X</button>
-  </form>
-</dialog>
-<dialog id="folder-dialog" class="upload-form-dialog">
-  <form action="folder/<%=folderUrl %>/create" method="post">
-    <label for="folder">New Folder</label>
-    <input
-      type="text"
-      placeholder="Folder Name"
-      id="folder"
-      name="folderName"
-      required
-    />
-    <button type="submit">New Folder</button>
-    <button type="button" class="close-modal">X</button>
-  </form>
-</dialog>
-<dialog class="folder-rename">
-  <form class="rename-form" method="post">
-    <label for="rename-input">Rename</label>
-    <input type="text" id="rename-input" name="folderName" required />
-    <button type="button" class="close-modal">Cancel</button>
-    <button type="submit">Ok</button>
-  </form>
-</dialog>
-<dialog class="folder-delete">
-  <form class="delete-form" method="post">
-    <label for="delete-input"
-      >Deleting this folder will delete all the files and folders inside. Are
-      you sure?</label
+<div class="main-container">
+  <dialog id="file-dialog" class="upload-form-dialog">
+    <form
+      action="/upload/file/<%=folderUrl %>/create"
+      method="post"
+      enctype="multipart/form-data"
     >
-    <button class="close-modal">Cancel</button>
-    <button type="submit">Ok</button>
-  </form>
-</dialog>
-<%-include('navTree') %> <% if(locals.errors){ %>
-<ul class="errors">
-  <% errors.map((err)=>{ %>
-  <li><%=err.msg %></li>
-  <% }) %>
-</ul>
-<% } %> <% if(locals.folders.length){ %>
-<ul>
-  <% folders.map((folder)=>{ %>
-  <li data-folder-id="<%=folder.id %>" class="folder-list">
-    <a href="<%=folder.id %>" class="folder-link"><%=folder.folderName %></a>
-    <button class="folder-dropdown-btn">Edit</button>
-    <div class="edit-dropdown-container">
-      <button class="folder-rename-btn" type="button">Rename</button>
-      <button class="folder-delete-btn" type="button">Delete</button>
-    </div>
-  </li>
-  <% }) %>
-</ul>
-<% if(locals.files.length){ %>
-<ul>
-  <% files.map((file)=>{ %>
-  <li data-file-id="<%=file.id %>">
-    <div><%=file.fileName %></div>
-    <button class="file-view-btn">View</button>
-  </li>
-  <% }) %>
-</ul>
-<% } %> <% } %>
-<button type="button" class="newFileBtn">New File</button>
-<button type="button" class="newFolderBtn">New Folder</button>
+      <label for="file"> Upload a file </label>
+      <input type="file" name="userFile" />
+      <button type="submit">Upload</button>
+      <button type="button" class="close-modal">X</button>
+    </form>
+  </dialog>
+  <dialog id="folder-dialog" class="upload-form-dialog">
+    <form action="folder/<%=folderUrl %>/create" method="post">
+      <label for="folder">New Folder</label>
+      <input
+        type="text"
+        placeholder="Folder Name"
+        id="folder"
+        name="folderName"
+        required
+      />
+      <button type="submit">New Folder</button>
+      <button type="button" class="close-modal">X</button>
+    </form>
+  </dialog>
+  <dialog class="folder-rename">
+    <form class="rename-form" method="post">
+      <label for="rename-input">Rename</label>
+      <input type="text" id="rename-input" name="folderName" required />
+      <button type="button" class="close-modal">Cancel</button>
+      <button type="submit">Ok</button>
+    </form>
+  </dialog>
+  <dialog class="folder-delete">
+    <form class="delete-form" method="post">
+      <label for="delete-input"
+        >Deleting this folder will delete all the files and folders inside. Are
+        you sure?</label
+      >
+      <button class="close-modal">Cancel</button>
+      <button type="submit">Ok</button>
+    </form>
+  </dialog>
+  <%-include('navTree') %> <% if(locals.errors){ %>
+  <ul class="errors">
+    <% errors.map((err)=>{ %>
+    <li><%=err.msg %></li>
+    <% }) %>
+  </ul>
+  <% } %> <% if(locals.folders.length){ %>
+  <ul>
+    <% folders.map((folder)=>{ %>
+    <li data-folder-id="<%=folder.id %>" class="folder-list">
+      <a href="<%=folder.id %>" class="folder-link"><%=folder.folderName %></a>
+      <button class="folder-dropdown-btn">Edit</button>
+      <div class="edit-dropdown-container">
+        <button class="folder-rename-btn" type="button">Rename</button>
+        <button class="folder-delete-btn" type="button">Delete</button>
+      </div>
+    </li>
+    <% }) %>
+  </ul>
+  <% if(locals.files.length){ %>
+  <ul>
+    <% files.map((file)=>{ %>
+    <li data-file-id="<%=file.id %>">
+      <div><%=file.fileName %></div>
+      <button class="file-view-btn">View</button>
+    </li>
+    <% }) %>
+  </ul>
+  <% } %> <% } %>
+  <button type="button" class="newFileBtn">New File</button>
+  <button type="button" class="newFolderBtn">New Folder</button>
+</div>

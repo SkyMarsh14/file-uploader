@@ -53,3 +53,27 @@ a:link,
 a:visited {
   text-decoration: none;
 }
+div.username > img {
+  height: 1em;
+  padding: 0 0.1em;
+}
+.username.header {
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+  font-size: 1.2em;
+}
+div.logout {
+  display: flex;
+  align-items: center;
+}
+a[href="/logout"] {
+  font-size: 1.2em;
+  color: var(--main-theme-blue);
+}
+a[href="/logout"]:visited {
+  color: var(--main-theme-blue);
+}
+img[alt="Logout icon"] {
+  height: 1.5em;
+}

@@ -14,10 +14,14 @@
       <a class="sign-up-link" href="/sign-up">Sign Up</a>
     </div>
     <% } %> <% if(locals.user){ %>
-    <div class="username">
+    <div class="username header">
+      <img src="/icons/user.svg" alt="user logo" />
       <p><%=user.username %></p>
     </div>
-    <a href="/logout">Logout</a>
+    <div class="logout">
+      <a href="/logout">Logout</a>
+      <img src="/icons/logout.svg" alt="Logout icon" />
+    </div>
     <% } %>
   </nav>
 </header>

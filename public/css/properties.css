@@ -7,4 +7,9 @@
   --main-theme-blue: #0053be;
   --main-theme-blue-filter: invert(27%) sepia(83%) saturate(2261%)
     hue-rotate(205deg) brightness(99%) contrast(84%);
+  --filter-pure-black: invert(0%) sepia(100%) saturate(7442%) hue-rotate(186deg)
+    brightness(82%) contrast(112%);
+  --errors-warning-red: rgb(238, 56, 56);
+  --errors-warning-red-filter: invert(31%) sepia(47%) saturate(5754%)
+    hue-rotate(345deg) brightness(97%) contrast(92%);
 }
