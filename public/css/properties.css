@@ -1,0 +1,7 @@
+:root {
+  --login-button-padding: 1em 2em;
+  --login-button-default-color: #1a73e8;
+  --light-gray-border: 1px solid #dadce0;
+  --login-button-active-color: #174ea6;
+  --header-height: 4em;
+}

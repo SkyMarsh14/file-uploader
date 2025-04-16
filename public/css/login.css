@@ -1,0 +1,59 @@
+body {
+  min-height: 100vh;
+}
+main {
+  display: grid;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+.hero-logo {
+  grid-column: 1/2;
+  padding: 3em;
+}
+div.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  grid-column: 2/3;
+  width: 100%;
+  padding: 1em;
+}
+p.form-title {
+  font-size: 1.5em;
+}
+form > div {
+  display: flex;
+  flex-direction: column;
+  padding: 0.3em 0;
+}
+button.submit {
+  margin-top: 0.8em;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0.4em 1em;
+  background-color: var(--login-button-default-color);
+  border: 1px solid var(--login-button-default-color);
+  color: white;
+  transition: background-color 0.2s;
+}
+button.submit:hover {
+  background-color: var(--login-button-active-color);
+}
+.error-line {
+  display: flex;
+  gap: 0.2em;
+  max-height: 100%;
+  color: rgb(238, 56, 56);
+}
+.error-line > img {
+  width: 1em;
+}
+.error-line > li {
+  list-style-type: none;
+}
+ul.errors-list {
+  padding-inline-start: 0px;
+}

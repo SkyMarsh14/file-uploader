@@ -1,0 +1,49 @@
+header {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 2px 6px #0000001f;
+  padding: 1em 2em;
+}
+img.database.icon {
+  width: 3em;
+  height: 3em;
+}
+header nav {
+  display: flex;
+}
+div.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.logo-title {
+  font-size: 2em;
+}
+.login-elements {
+  font-size: 1.1em;
+}
+.sign-in-link,
+.sign-up-link {
+  padding: 0.6em 1.3em;
+  border-radius: 0.3em;
+}
+.sign-in-link {
+  background-color: var(--login-button-default-color);
+  color: white;
+  transition: background-color 0.2s;
+}
+.sign-up-link {
+  color: var(--login-button-default-color);
+  background-color: white;
+  border-color: var(--transparent-gray-color);
+  border: var(--light-gray-border);
+}
+.sign-in-link:hover {
+  background-color: var(--login-button-active-color);
+}
+a:link,
+a:visited {
+  text-decoration: none;
+}

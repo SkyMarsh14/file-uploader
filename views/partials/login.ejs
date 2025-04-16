@@ -1,6 +1,8 @@
-<div>
+<link rel="stylesheet" href="/css/login.css" />
+<img src="/icons/file-manager-logo.svg" alt="" class="hero-logo" />
+<div class="main-container">
   <% if(locals.type==='sign-in') {%>
-  <p>Sign in</p>
+  <p class="form-title">Sign in</p>
   <p>Don't have an account yet? <a href="/sign-up">Sign Up</a></p>
   <% if(locals.messages){ %> <% if(messages.length>0){ %>
   <ul>
@@ -9,18 +11,21 @@
     <% } %>
   </ul>
   <% } %> <% } %> <% } else{%>
-  <p>Sign up</p>
+  <p class="form-title">Sign up</p>
   <p>Already have an account? <a href="/sign-in">Sign In</a></p>
   <% } %> <% if(locals.errors){ %>
-  <ul>
+  <ul class="errors-list">
     <% errors.map((err)=>{ %>
-    <li><%=err.msg %></li>
+    <div class="error-line">
+      <img src="/icons/warning.svg" alt="alert icon" />
+      <li><%=err.msg %></li>
+    </div>
     <% }) %>
   </ul>
   <% } %>
-  <form method="post">
+  <form class="login-form" method="post">
     <div class="username">
-      <label for="">Username</label>
+      <label for="username">Username</label>
       <input
         type="text"
         id="username"
@@ -54,9 +59,9 @@
       />
     </div>
     <% } %> <% if(locals.type==='sign-up'){ %>
-    <button type="submit">Sign Up</button>
+    <button class="submit" type="submit">Sign Up</button>
     <% }else if(locals.type==='sign-in'){ %>
-    <button type="submit">Sign In</button>
+    <button class="submit" type="submit">Sign In</button>
     <% } %>
   </form>
 </div>
