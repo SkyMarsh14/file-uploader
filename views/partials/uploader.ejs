@@ -8,8 +8,8 @@
       method="post"
       enctype="multipart/form-data"
     >
-      <label for="file"> Upload a file </label>
-      <input type="file" name="userFile" />
+      <label for="file-upload"> Upload a file </label>
+      <input id="file-upload" type="file" name="userFile" />
       <button type="submit">Upload</button>
       <button type="button" class="close-modal">X</button>
     </form>
@@ -38,7 +38,7 @@
   </dialog>
   <dialog class="folder-delete">
     <form class="delete-form" method="post">
-      <label for="delete-input"
+      <label
         >Deleting this folder will delete all the files and folders inside. Are
         you sure?</label
       >
@@ -75,6 +75,8 @@
     <% }) %>
   </ul>
   <% } %> <% } %>
-  <button type="button" class="newFileBtn">New File</button>
-  <button type="button" class="newFolderBtn">New Folder</button>
 </div>
+<aside>
+  <button type="button" class="dialog-btn newFileBtn">New File</button>
+  <button type="button" class="dialog-btn newFolderBtn">New Folder</button>
+</aside>
