@@ -88,41 +88,106 @@ aside {
   padding-inline-start: 0;
   font-size: 1.1em;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
   li {
-    background-color: white;
-    padding: 0.3em;
     list-style-type: none;
-    display: flex;
-    align-items: center;
-    gap: 0.2em;
-  }
-  li::before {
-    content: "";
-    display: inline-block;
-    min-height: 1em;
-    min-width: 1em;
-    background-size: contain;
-    background-repeat: no-repeat;
   }
 }
-li.folder-list::before {
+.folder-name,
+.file-name {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+}
+div.item-info {
+  background-color: white;
+  border-radius: 0.5em;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+  transition: filter 0.2s;
+  cursor: pointer;
+  padding: 0.2em 0.3em;
+}
+.item-info:hover {
+  filter: brightness(80%);
+}
+div.file-name {
+  display: inline-block;
+}
+.folder-info::before {
+  display: inline-block;
+  content: "";
+  min-width: 1em;
+  min-height: 1em;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-image: url("/icons/folder-dark.svg");
+  vertical-align: middle;
+  margin-right: 0.3em;
 }
-li.file-list::before {
+.file-list {
+  display: flex;
+  align-items: center;
+}
+.file-name::before {
+  display: inline-block;
+  content: "";
+  min-width: 0.8em;
+  min-height: 0.8em;
+  margin-right: 0.3em;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-image: url("/icons/file-dark.svg");
 }
-.content-list > li:hover {
+.content-list > div.folder-list:hover {
   filter: brightness(85%);
 }
 .file-name,
 .folder-name {
+  display: inline-block;
   max-width: 250px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.file-view-btn {
-  min-width: fit-content;
-  text-overflow: unset;
+.file-name {
+  max-width: 300px;
+  text-overflow: ellipsis;
+}
+.folder-dropdown-btn {
+  min-width: 1.5em;
+  height: 1.2em;
+  margin-left: auto;
+  margin-right: 0.5em;
+  border-radius: 0.5em;
+  background-image: url("/icons/three-dots-vertical.svg");
+  background-size: contain;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: white;
+  transition: filter 0.2s;
+}
+.folder-dropdown-btn:hover {
+  filter: brightness(80%);
+}
+.folder-list {
+  position: relative;
+}
+.edit-dropdown-container {
+  position: absolute;
+  right: 0;
+  top: 2em;
+  z-index: 1;
+}
+.edit-dropdown-container > button {
+  background-color: white;
+}
+.edit-dropdown-container > button:hover {
+  z-index: 1;
+  cursor: pointer;
 }
