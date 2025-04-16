@@ -4,4 +4,7 @@
   --light-gray-border: 1px solid #dadce0;
   --login-button-active-color: #174ea6;
   --header-height: 4em;
+  --main-theme-blue: #0053be;
+  --main-theme-blue-filter: invert(27%) sepia(83%) saturate(2261%)
+    hue-rotate(205deg) brightness(99%) contrast(84%);
 }

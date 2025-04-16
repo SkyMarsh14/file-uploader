@@ -7,8 +7,9 @@ header {
   padding: 1em 2em;
 }
 img.database.icon {
-  width: 3em;
-  height: 3em;
+  width: 2.5em;
+  height: 2.5em;
+  margin-right: 0.4em;
 }
 header nav {
   display: flex;
@@ -17,9 +18,14 @@ div.logo {
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: var(--main-theme-blue);
+  font-family: "DM Sans", sans-serif;
+}
+.icon.database {
+  filter: var(--main-theme-blue-filter);
 }
 .logo-title {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 .login-elements {
   font-size: 1.1em;

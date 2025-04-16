@@ -1,5 +1,9 @@
 <link rel="stylesheet" href="/css/login.css" />
-<img src="/icons/file-manager-logo.svg" alt="" class="hero-logo" />
+<img
+  src="/icons/file-manager-logo.svg"
+  alt="woman holding files"
+  class="hero-logo"
+/>
 <div class="main-container">
   <% if(locals.type==='sign-in') {%>
   <p class="form-title">Sign in</p>
@@ -12,7 +16,9 @@
   </ul>
   <% } %> <% } %> <% } else{%>
   <p class="form-title">Sign up</p>
-  <p>Already have an account? <a href="/sign-in">Sign In</a></p>
+  <p>
+    Already have an account? <a class="inline link" href="/sign-in">Sign In</a>
+  </p>
   <% } %> <% if(locals.errors){ %>
   <ul class="errors-list">
     <% errors.map((err)=>{ %>

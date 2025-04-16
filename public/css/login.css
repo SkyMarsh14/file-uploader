@@ -19,7 +19,7 @@ div.main-container {
   gap: 0.5em;
   grid-column: 2/3;
   width: 100%;
-  padding: 1em;
+  padding: 1em 2em;
 }
 p.form-title {
   font-size: 1.5em;
@@ -56,4 +56,8 @@ button.submit:hover {
 }
 ul.errors-list {
   padding-inline-start: 0px;
+}
+a.inline.link:visited,
+a.inline.link:active {
+  color: rgb(13, 197, 253);
 }
