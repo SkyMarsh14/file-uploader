@@ -56,16 +56,18 @@
   <ul class="content-list">
     <% folders.map((folder)=>{ %>
     <li data-folder-id="<%=folder.id %>" class="folder-list">
-      <div class="item-info folder-info">
-        <a class="folder-name" href="<%=folder.id %>" class="folder-link"
-          ><%=folder.folderName %></a
-        >
-
+      <a class="item-info folder-info folder-link" href="<%=folder.id %>">
+        <div class="folder-name"><%=folder.folderName %></div>
         <button class="folder-dropdown-btn"></button>
-      </div>
+      </a>
+
       <div class="edit-dropdown-container">
-        <button class="folder-rename-btn" type="button">Rename</button>
-        <button class="folder-delete-btn" type="button">Delete</button>
+        <button class="folder-rename-btn folder-edit-btn" type="button">
+          Rename
+        </button>
+        <button class="folder-delete-btn folder-edit-btn" type="button">
+          Delete
+        </button>
       </div>
     </li>
     <% }) %> <% if(locals.files.length){ %> <% files.map((file)=>{ %>

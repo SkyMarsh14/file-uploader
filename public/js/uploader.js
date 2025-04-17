@@ -23,6 +23,7 @@ dropdownToggleBtns.forEach((btn) => {
     e.preventDefault();
     const li = btn.closest(".folder-list");
     li.querySelector(".edit-dropdown-container").classList.toggle("visible");
+    li.querySelector(".folder-link").classList.toggle("selected-folder");
   });
 });
 const renameModal = document.querySelector(".folder-rename");

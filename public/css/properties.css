@@ -13,4 +13,5 @@
   --errors-warning-red-filter: invert(31%) sepia(47%) saturate(5754%)
     hue-rotate(345deg) brightness(97%) contrast(92%);
   --light-blue-aside: #f7f9fd;
+  --sky-blue-selected-folder-color: rgb(93, 178, 239);
 }

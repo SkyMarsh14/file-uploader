@@ -100,7 +100,7 @@ aside {
   align-items: center;
   gap: 0.2em;
 }
-div.item-info {
+.item-info {
   background-color: white;
   border-radius: 0.5em;
   list-style-type: none;
@@ -180,9 +180,10 @@ div.file-name {
 }
 .edit-dropdown-container {
   position: absolute;
-  right: 0;
-  top: 2em;
+  right: -7em;
+  top: 1em;
   z-index: 1;
+  width: 10em;
 }
 .edit-dropdown-container > button {
   background-color: white;
@@ -190,4 +191,30 @@ div.file-name {
 .edit-dropdown-container > button:hover {
   z-index: 1;
   cursor: pointer;
+}
+a.folder-link {
+  color: black;
+}
+a.folder-link:visited {
+  color: black;
+}
+a.tree-link {
+  display: inline-block;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+a.root-folder {
+  display: flex;
+  align-items: center;
+}
+.folder-edit-btn:hover {
+  filter: brightness(85%);
+}
+.folder-link.selected-folder {
+  background-color: var(--sky-blue-selected-folder-color);
+}
+.selected-folder .folder-dropdown-btn {
+  background-color: inherit;
 }
