@@ -76,6 +76,12 @@
     </li>
     <% }) %> <% } %>
   </ul>
+  <% } %> <% if(!locals.folders.length && !locals.files.length){ %>
+  <img
+    class="empty-logo"
+    src="/icons/waiting-upload.svg"
+    alt="waiting for user to upload something"
+  />
   <% } %>
 </div>
 <aside>

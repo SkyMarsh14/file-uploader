@@ -265,3 +265,8 @@ a.root-folder {
   opacity: 1;
   transform: translateY(0);
 }
+.empty-logo {
+  margin: auto;
+  width: 30vw;
+  max-width: 600px;
+}

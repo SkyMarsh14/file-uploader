@@ -32,7 +32,7 @@ renameBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     renameModal.showModal();
-    const a = btn.closest("li.folder-list").querySelector("a.folder-link");
+    const a = btn.closest("li.folder-list").querySelector(".folder-name");
 
     document.querySelector("#rename-input").value = a.textContent;
     const folderId = btn.closest("li.folder-list").dataset.folderId;
