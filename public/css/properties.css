@@ -2,6 +2,7 @@
   --login-button-padding: 1em 2em;
   --login-button-default-color: #1a73e8;
   --light-gray-border: 1px solid #dadce0;
+  --dark-gray-border: 1px solid #b8b7b7;
   --login-button-active-color: #174ea6;
   --header-height: 4em;
   --main-theme-blue: #0053be;
@@ -14,4 +15,5 @@
     hue-rotate(345deg) brightness(97%) contrast(92%);
   --light-blue-aside: #f7f9fd;
   --sky-blue-selected-folder-color: rgb(93, 178, 239);
+  --simple-light-gray-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

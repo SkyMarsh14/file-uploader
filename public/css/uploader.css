@@ -180,15 +180,45 @@ div.file-name {
 }
 .edit-dropdown-container {
   position: absolute;
-  right: -7em;
+  background-color: white;
+  right: 1em;
   top: 1em;
   z-index: 1;
-  width: 10em;
+  width: 15em;
+  border: var(--light-gray-border);
+  box-shadow: var(--simple-light-gray-shadow);
+  & button {
+    font-size: 0.9em;
+    border: none;
+    height: 2.2em;
+    background-color: inherit;
+  }
 }
-.edit-dropdown-container > button {
-  background-color: white;
+.edit-dropdown-container button:not(:last-child) {
+  border-bottom: var(--dark-gray-border);
 }
-.edit-dropdown-container > button:hover {
+.folder-edit-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.folder-edit-btn::before {
+  display: inline-block;
+  content: "";
+  font-size: 1.5em;
+  min-width: 1em;
+  min-height: 1em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 0.5em;
+}
+.folder-rename-btn::before {
+  background-image: url("/icons/edit-logo.svg");
+}
+.folder-delete-btn::before {
+  background-image: url("/icons/garbage-bin.svg");
+}
+.edit-dropdown-container .edit-dropdown-container > button:hover {
   z-index: 1;
   cursor: pointer;
 }
@@ -209,12 +239,29 @@ a.root-folder {
   display: flex;
   align-items: center;
 }
+.folder-edit-btn {
+  padding: 0;
+}
 .folder-edit-btn:hover {
   filter: brightness(85%);
 }
 .folder-link.selected-folder {
   background-color: var(--sky-blue-selected-folder-color);
 }
-.selected-folder .folder-dropdown-btn {
-  background-color: inherit;
+.selected-folder > .folder-dropdown-btn {
+  background-color: var(--sky-blue-selected-folder-color);
+}
+.edit-dropdown-container {
+  visibility: hidden;
+  height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: height 0.3s, opacity 0.3s, visibility 0.3s, transform 0.3s;
+}
+.edit-dropdown-container.visible {
+  display: grid;
+  visibility: visible;
+  height: auto;
+  opacity: 1;
+  transform: translateY(0);
 }

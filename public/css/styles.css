@@ -1,6 +1,0 @@
-.edit-dropdown-container {
-  display: none;
-}
-.edit-dropdown-container.visible {
-  display: grid;
-}
