@@ -6,6 +6,8 @@ main {
   grid-template-columns: 250px 4fr;
 }
 div.main-container {
+  display: flex;
+  flex-direction: column;
   padding: 1em 2em;
   grid-column: 2/3;
 }
@@ -265,8 +267,20 @@ a.root-folder {
   opacity: 1;
   transform: translateY(0);
 }
-.empty-logo {
+.empty-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
   margin: auto;
-  width: 30vw;
-  max-width: 600px;
+  gap: 2em;
+}
+img.empty-logo {
+  width: 40vw;
+  max-width: 700px;
+}
+div.image-message > div:first-child {
+  font-size: 1.3em;
+}
+div.image-message > div {
+  text-align: center;
 }

@@ -77,11 +77,17 @@
     <% }) %> <% } %>
   </ul>
   <% } %> <% if(!locals.folders.length && !locals.files.length){ %>
-  <img
-    class="empty-logo"
-    src="/icons/waiting-upload.svg"
-    alt="waiting for user to upload something"
-  />
+  <div class="logo-container empty-logo-container">
+    <img
+      src="/icons/waiting-upload.svg"
+      class="empty-logo"
+      alt="waiting for user to upload something"
+    />
+    <div class="image-message">
+      <div>Upload files here</div>
+      <div>you can use the new folder button.</div>
+    </div>
+  </div>
   <% } %>
 </div>
 <aside>
