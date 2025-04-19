@@ -284,3 +284,22 @@ div.image-message > div:first-child {
 div.image-message > div {
   text-align: center;
 }
+dialog {
+  border: none;
+  padding: 3em 2em;
+  border-radius: 1em;
+}
+.form-field > label {
+  font-size: 1.5em;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  font-family: "DM Sans", sans-serif;
+  gap: 1em;
+}

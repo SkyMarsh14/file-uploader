@@ -8,32 +8,44 @@
       method="post"
       enctype="multipart/form-data"
     >
-      <label for="file-upload"> Upload a file </label>
-      <input id="file-upload" type="file" name="userFile" />
-      <button type="submit">Upload</button>
-      <button type="button" class="close-modal">X</button>
+      <div class="form-field">
+        <label for="file-upload"> Upload a file </label>
+        <input id="file-upload" type="file" name="userFile" />
+      </div>
+      <div class="form-control">
+        <button type="submit">Upload</button>
+        <button type="button" class="close-modal">Close</button>
+      </div>
     </form>
   </dialog>
   <dialog id="folder-dialog" class="upload-form-dialog">
     <form action="folder/<%=folderUrl %>/create" method="post">
-      <label for="folder">New Folder</label>
-      <input
-        type="text"
-        placeholder="Folder Name"
-        id="folder"
-        name="folderName"
-        required
-      />
-      <button type="submit">New Folder</button>
-      <button type="button" class="close-modal">X</button>
+      <div class="form-field">
+        <label for="folder">New Folder</label>
+        <input
+          type="text"
+          placeholder="Folder Name"
+          id="folder"
+          name="folderName"
+          required
+        />
+      </div>
+      <div class="form-control">
+        <button type="submit">Create</button>
+        <button type="button" class="close-modal">Close</button>
+      </div>
     </form>
   </dialog>
   <dialog class="folder-rename">
     <form class="rename-form" method="post">
-      <label for="rename-input">Rename</label>
-      <input type="text" id="rename-input" name="folderName" required />
-      <button type="button" class="close-modal">Cancel</button>
-      <button type="submit">Ok</button>
+      <div class="form-field">
+        <label for="rename-input">Rename</label>
+        <input type="text" id="rename-input" name="folderName" required />
+      </div>
+      <div class="form-control">
+        <button type="button" class="close-modal">Cancel</button>
+        <button type="submit">Ok</button>
+      </div>
     </form>
   </dialog>
   <dialog class="folder-delete">
