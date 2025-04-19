@@ -3,6 +3,7 @@ dotenv.config();
 import express from "express";
 import "./config/passport.js";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import loginRouter from "./routes/loginRouter.js";
 import indexRouter from "./routes/indexRouter.js";
 import uploadRouter from "./routes/uploadRouter.js";
@@ -12,10 +13,11 @@ import connection from "connect-pg-simple";
 import pool from "./db/pool.js";
 const pgSession = connection(session);
 const app = express();
-
-app.set("views", path.join(import.meta.dirname, "views"));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-const assetPath = path.join(import.meta.dirname, "public");
+const assetPath = path.join(__dirname, "public");
 app.use(express.static(assetPath));
 app.use(express.urlencoded({ extended: false }));
 app.use(
