@@ -96,8 +96,7 @@ aside {
     list-style-type: none;
   }
 }
-.folder-name,
-.file-name {
+.folder-name {
   display: flex;
   align-items: center;
   gap: 0.2em;
@@ -116,10 +115,7 @@ aside {
 .item-info:hover {
   filter: brightness(80%);
 }
-div.file-name {
-  display: flex;
-  align-items: center;
-}
+
 .folder-info::before {
   display: inline-block;
   content: "";
@@ -148,14 +144,12 @@ div.file-name {
 .file-name,
 .folder-name {
   display: inline-block;
-  max-width: 250px;
-  white-space: nowrap;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
+  color: black;
 }
-.file-name {
-  text-overflow: ellipsis;
-}
+
 .folder-dropdown-btn {
   min-width: 1.5em;
   height: 1.2em;

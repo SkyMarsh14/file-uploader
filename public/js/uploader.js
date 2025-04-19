@@ -73,8 +73,11 @@ function hideDiv() {
   );
 }
 function hideDivOnMouseup(e) {
-  if (e.target.isSameNode(document.querySelector(".folder-dropdown-btn")))
-    return null;
+  const folderBtns = document.querySelectorAll(".folder-dropdown-btn");
+  const condition = Array.from(folderBtns).some((btn) => {
+    return e.target.isSameNode(btn);
+  });
+  if (condition) return null;
   return document.contains(e.target) ? hideDiv() : null;
 }
 function hideDivOnEsc(e) {
