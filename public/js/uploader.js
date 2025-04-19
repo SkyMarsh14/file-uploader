@@ -57,3 +57,26 @@ fileList.forEach((li) => {
     window.location.href = `/upload/file/${li.dataset.fileId}/details`;
   });
 });
+function removeClassFromAll(nodes, className) {
+  nodes.forEach((node) => {
+    node.classList.remove(className);
+  });
+}
+function hideDiv() {
+  removeClassFromAll(
+    document.querySelectorAll(".folder-link"),
+    "selected-folder"
+  );
+  removeClassFromAll(
+    document.querySelectorAll(".edit-dropdown-container"),
+    "visible"
+  );
+}
+function hideDivOnMouseup(e) {
+  return document.contains(e.target) ? hideDiv() : null;
+}
+function hideDivOnEsc(e) {
+  return e.key === "Escape" ? hideDiv() : null;
+}
+document.addEventListener("mouseup", hideDivOnMouseup);
+document.addEventListener("keydown", hideDivOnEsc);
