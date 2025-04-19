@@ -73,6 +73,8 @@ function hideDiv() {
   );
 }
 function hideDivOnMouseup(e) {
+  if (e.target.isSameNode(document.querySelector(".folder-dropdown-btn")))
+    return null;
   return document.contains(e.target) ? hideDiv() : null;
 }
 function hideDivOnEsc(e) {
