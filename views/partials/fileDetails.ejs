@@ -1,11 +1,36 @@
+<link rel="stylesheet" href="/css/fileDetails.css" />
 <%-include('navTree') %>
 <div class="file-info">
-  <div class="file-name">Name: <%=file.fileName %></div>
-  <div class="created-at">Created: <%=file.created_at %></div>
-  <div class="file-size">Size: <%=file.size %></div>
-  <div class="file-type">Type: <%=file.mimetype %></div>
-  <a href="<%=file.url %>" download="<%=file.fileName %>">
-    <button class="download-btn">Download</button>
+  <h1>File Details</h1>
+  <div class="data-column">
+    <div class="file-name">
+      <span class="data-field">Name:</span>
+      <span class="data-info"><%=file.fileName %></span>
+    </div>
+    <div class="created-at">
+      <span class="data-field">Created:</span>
+      <span class="data-info"><%=file.created_at %></span>
+    </div>
+    <div class="file-size">
+      <span class="data-field">Size:</span>
+      <span class="data-info"><%=file.size %></span>
+    </div>
+    <div class="file-type">
+      <span class="data-field">Type:</span>
+      <span class="data-info"><%=file.mimetype %></span>
+    </div>
+  </div>
+  <a href="<%=file.url %>" target="_blank" download="<%=file.fileName %>">
+    <button class="download-btn">
+      <img
+        class="download-icon"
+        src="/icons/download-braket.svg"
+        alt="download icon"
+      />
+      <span>Download</span>
+    </button>
   </a>
+  <a href="/upload/<%=folderId %>" class="link go-back"
+    >Go back to the folder</a
+  >
 </div>
-<a href="/upload/<%=folderId %>">Go back to the folder</a>
