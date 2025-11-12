@@ -1,6 +1,6 @@
 <script src="/js/uploader.js" defer></script>
 <link rel="stylesheet" href="/css/uploader.css" />
-<% const folderUrl=locals.folderId || null %>
+<% const folderUrl=locals.folderId||null%>
 <div class="main-container">
   <dialog id="file-dialog" class="upload-form-dialog">
     <form
@@ -64,9 +64,21 @@
     <li><%=err.msg %></li>
     <% }) %>
   </ul>
-  <% } %> <% if(locals.folders.length){ %>
+  <% } %> <% if(!locals.folders.length && !locals.files.length){ %>
+  <div class="logo-container empty-logo-container">
+    <img
+      src="/icons/waiting-upload.svg"
+      class="empty-logo"
+      alt="waiting for user to upload something"
+    />
+    <div class="image-message">
+      <div>Upload files here</div>
+      <div>you can use the new folder button.</div>
+    </div>
+  </div>
+  <% } %> <% if(locals.folders.length || locals.files.length){ %>
   <ul class="content-list">
-    <% folders.map((folder)=>{ %>
+    <% if(locals.folders.length){ %> <% folders.map((folder)=>{ %>
     <li data-folder-id="<%=folder.id %>" class="folder-list">
       <a class="item-info folder-info folder-link" href="<%=folder.id %>">
         <div class="folder-name"><%=folder.folderName %></div>
@@ -82,7 +94,7 @@
         </button>
       </div>
     </li>
-    <% }) %> <% if(locals.files.length){ %> <% files.map((file)=>{ %>
+    <% }) %> <% } %> <% if(locals.files.length){ %> <% files.map((file)=>{ %>
     <li class="file-list" data-file-id="<%=file.id %>">
       <a class="item-info file-link" href="/file/<%=file.id %>/details">
         <div class="file-name"><%=file.fileName %></div>
@@ -90,18 +102,6 @@
     </li>
     <% }) %> <% } %>
   </ul>
-  <% } %> <% if(!locals.folders.length && !locals.files.length){ %>
-  <div class="logo-container empty-logo-container">
-    <img
-      src="/icons/waiting-upload.svg"
-      class="empty-logo"
-      alt="waiting for user to upload something"
-    />
-    <div class="image-message">
-      <div>Upload files here</div>
-      <div>you can use the new folder button.</div>
-    </div>
-  </div>
   <% } %>
 </div>
 <aside>
